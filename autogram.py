@@ -70,7 +70,7 @@ class AutoGram(object):
 
         return False, counts
 
-    def pretty_print(self):
+    def pretty_print(self, verbose=False):
 
         match, counts = self.check_counts()
         self.symbols.sort()
@@ -91,13 +91,14 @@ class AutoGram(object):
         }, columns=['symbol', 'actual_count', 'accounted_count'])
         count_df['match'] = count_df.actual_count == count_df.accounted_count
         print count_df
-
         print '-'*50
-        print 'Number of matches = %s' % count_df.match.sum()
-        print '-'*50
-        print counts
 
-    def __call__(self, imax=10000):
+        if verbose:
+            print 'Number of matches = %s' % count_df.match.sum()
+            print '-'*50
+            print counts
+
+    def __call__(self, imax=10000, verbose=False):
 
         i = 0
         match, counts = self.check_counts()
@@ -109,7 +110,9 @@ class AutoGram(object):
             for symbol in self.symbols:
                 if self.counts[symbol] != counts[symbol]:
                     self.counts[symbol] = counts[symbol]
-                    print '%s updating %s count to %s' % (i, symbol, counts[symbol])
+                    if verbose:
+                        print '%s updating %s count to %s' % (i, symbol,
+                                                              counts[symbol])
                     match, counts = self.check_counts()
                     break
 
