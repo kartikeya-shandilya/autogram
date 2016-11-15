@@ -8,7 +8,12 @@ An autogram(https://en.wikipedia.org/wiki/Autogram) is a sentence that describes
 
 To generate some fun little autograms, automatically with a randomized brute-force approach.
 
-### Example-2
+### Requirements
+
+  * pandas - for printing outputs in tabular format
+  * num2words - for converting numbers to their word representation
+
+### Example-1
 
 Simple code example, with limited symbols, with verbose = True -
 ```
