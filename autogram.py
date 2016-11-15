@@ -70,19 +70,7 @@ class AutoGram(object):
 
         return False, counts
 
-    def pretty_print(self, verbose=False):
-
-        match, counts = self.check_counts()
-        self.symbols.sort()
-
-        print '='*50
-        if match:
-            print '**** autogram generation successful ****'
-        else:
-            print ':( autogram generation not successful'
-
-        print self.sentence()
-        print '='*50
+    def count_df(self, counts):
 
         count_df = pd.DataFrame({
             'symbol': self.symbols,
@@ -90,11 +78,26 @@ class AutoGram(object):
             'accounted_count': [self.counts[x] for x in self.symbols]
         }, columns=['symbol', 'actual_count', 'accounted_count'])
         count_df['match'] = count_df.actual_count == count_df.accounted_count
-        print count_df
+
+        return count_df
+
+    def pretty_print(self, verbose=False):
+
+        match, counts = self.check_counts()
+        self.symbols.sort()
+
+        if match:
+            print '**** autogram generation successful ****'
+        else:
+            print ':( autogram generation not successful'
+
+        print self.sentence()
+        print '='*50
+        print self.count_df(counts)
         print '-'*50
 
         if verbose:
-            print 'Number of matches = %s' % count_df.match.sum()
+            print 'Number of matches = %s' % self.count_df(counts).match.sum()
             print '-'*50
             print 'counts =', counts
 
@@ -109,18 +112,17 @@ class AutoGram(object):
             print '-'*50
             print 'Starting autogram generation:'
 
-        while not match:
+        msg = '%s updating %s count to %s'
+        while (not match) and (i < imax):
             i += 1
-            if i > imax:
-                break
             random.shuffle(self.symbols)
             for symbol in self.symbols:
                 if self.counts[symbol] != counts[symbol]:
                     self.counts[symbol] = counts[symbol]
                     if verbose:
-                        print '%s updating %s count to %s' % (i, symbol,
-                                                              counts[symbol])
+                        print msg % (i, symbol, counts[symbol])
                     match, counts = self.check_counts()
                     break
 
+        print '='*50
         self.pretty_print(verbose)
