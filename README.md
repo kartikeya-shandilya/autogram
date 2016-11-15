@@ -19,7 +19,7 @@ Simple code example, with limited symbols, with verbose = True -
 ```
 >>> import autogram
 >>> x = autogram.AutoGram(prefix='This sentence has ',
-                          symbols='abcde')
+                          symbols='abcdefg')
 >>> x(verbose=True)
 ```
 
@@ -28,24 +28,30 @@ Output -
 ```
 --------------------------------------------------
 Starting autogram generation:
-1 updating c count to 2
+1 updating e count to 11
 2 updating a count to 3
-3 updating d count to 2
-4 updating e count to 8
+3 updating e count to 14
+4 updating f count to 2
+5 updating c count to 2
+6 updating d count to 2
+7 updating e count to 10
+8 updating f count to 1
 ==================================================
 **** autogram generation successful ****
-this sentence has three a's, one b, two c's, two d's, and eight e's.
+this sentence has three a's, one b, two c's, two d's, ten e's, one f, and one g.
 ==================================================
   symbol  actual_count  accounted_count match
 0      a             3                3  True
 1      b             1                1  True
 2      c             2                2  True
 3      d             2                2  True
-4      e             8                8  True
+4      e            10               10  True
+5      f             1                1  True
+6      g             1                1  True
 --------------------------------------------------
-Number of matches = 5
+Number of matches = 7
 --------------------------------------------------
-counts = {u'a': 3, u'c': 2, u'b': 1, u'e': 8, u'd': 2}
+counts = {u'a': 3, u'c': 2, u'b': 1, u'e': 10, u'd': 2, u'g': 1, u'f': 1}
 ```
 
 ### Example-2
