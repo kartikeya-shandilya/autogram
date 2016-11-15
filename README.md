@@ -2,28 +2,64 @@
 
 ### What are autograms?
 
-An autogram[https://en.wikipedia.org/wiki/Autogram] is a sentence that describes itself in the sense of providing an inventory of its own characters (Source: Wikipedia).
+An autogram(https://en.wikipedia.org/wiki/Autogram) is a sentence that describes itself in the sense of providing an inventory of its own characters (Source: Wikipedia).
 
 ### Purpose of this repository?
 
 To generate some fun little autograms, automatically with a randomized brute-force approach.
 
-### Example-1
+### Example-2
 
-Code example, that can be executed on a python shell -
+Simple code example, with limited symbols, with verbose = True -
 ```
 >>> import autogram
->>> x = autogram.AutoGram('This sentence employs ',
-                          'abcdefghijklmnopqrtuvyz',
-                          3); x(25000)
+>>> x = autogram.AutoGram(prefix='This sentence has ',
+                          symbols='abcde')
+>>> x(verbose=True)
+```
+
+Output -
+
+```
+--------------------------------------------------
+Starting autogram generation:
+1 updating c count to 2
+2 updating a count to 3
+3 updating d count to 2
+4 updating e count to 8
+==================================================
+**** autogram generation successful ****
+this sentence has three a's, one b, two c's, two d's, and eight e's.
+==================================================
+  symbol  actual_count  accounted_count match
+0      a             3                3  True
+1      b             1                1  True
+2      c             2                2  True
+3      d             2                2  True
+4      e             8                8  True
+--------------------------------------------------
+Number of matches = 5
+--------------------------------------------------
+counts = {u'a': 3, u'c': 2, u'b': 1, u'e': 8, u'd': 2}
+```
+
+### Example-2
+
+Example with more set of symbols used -
+```
+>>> import autogram
+>>> x = autogram.AutoGram(prefix='This sentence employs ',
+                          symbols='abcdefghijklmnopqrtuvyz',
+                          seed=3)
+>>> x()
 ```
 
 Output of the above code -
 ```
 ==================================================
-** autogram generation successful **
+**** autogram generation successful ****
 this sentence employs two a's, one b, two c's, two d's, twenty-five e's, six f's, two g's, five h's, nine i's, one j, one k, two l's, two m's, fifteen n's, sixteen o's, two p's, one q, four r's, eighteen t's, two u's, three v's, three y's, and one z.
---------------------------------------------------
+==================================================
    symbol  actual_count  accounted_count match
 0       a             2                2  True
 1       b             1                1  True
@@ -51,7 +87,7 @@ this sentence employs two a's, one b, two c's, two d's, twenty-five e's, six f's
 --------------------------------------------------
 ```
 
-### Example-2
+### Example-3
 
 Code -
 ```
@@ -60,15 +96,16 @@ Code -
 >>> x = autogram.AutoGram(prefix='xiao9 - my cat says this sentence contains ',
                           suffix=' check for yourself.',
                           symbols=letters[:13]+'pqruvxz',
-                          seed=1); x(15000)
+                          seed=1)
+>>> x()
 ```
 
 Output -
 ```
 ==================================================
-** autogram generation successful **
+**** autogram generation successful ****
 xiao9 - my cat says this sentence contains six a's, one b, six c's, two d's, twenty-three e's, six f's, one g, five h's, eleven i's, one j, two k's, three l's, two m's, one p, one q, five r's, two u's, five v's, six x's, and one z check for yourself.
---------------------------------------------------
+==================================================
    symbol  actual_count  accounted_count match
 0       a             6                6  True
 1       b             1                1  True

@@ -22,7 +22,7 @@ class AutoGram(object):
         if not counts:
             self.counts = {x: 1 for x in self.symbols}
 
-        random.seed(seed)
+        self.seed = seed
 
         self.suffix = suffix
         if not suffix:
@@ -77,12 +77,12 @@ class AutoGram(object):
 
         print '='*50
         if match:
-            print '** autogram generation successful **'
+            print '**** autogram generation successful ****'
         else:
             print ':( autogram generation not successful'
 
         print self.sentence()
-        print '-'*50
+        print '='*50
 
         count_df = pd.DataFrame({
             'symbol': self.symbols,
@@ -96,12 +96,19 @@ class AutoGram(object):
         if verbose:
             print 'Number of matches = %s' % count_df.match.sum()
             print '-'*50
-            print counts
+            print 'counts =', counts
 
-    def __call__(self, imax=10000, verbose=False):
+    def __call__(self, imax=25000, verbose=False):
+
+        # set random seed
+        random.seed(self.seed)
 
         i = 0
         match, counts = self.check_counts()
+        if verbose:
+            print '-'*50
+            print 'Starting autogram generation:'
+
         while not match:
             i += 1
             if i > imax:
@@ -116,4 +123,4 @@ class AutoGram(object):
                     match, counts = self.check_counts()
                     break
 
-        self.pretty_print()
+        self.pretty_print(verbose)
