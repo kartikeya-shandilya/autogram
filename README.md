@@ -13,8 +13,9 @@ To generate some fun little autograms, automatically with a randomized brute-for
 Code example, that can be executed on a python shell -
 ```
 >>> import autogram
->>> x = autogram.AutoGram('This sentence employs ', 'abcdefghijklmnopqrtuvyz', 3)
->>> x(25000)
+>>> x = autogram.AutoGram('This sentence employs ',
+                          'abcdefghijklmnopqrtuvyz',
+                          3); x(25000)
 ```
 
 Output of the above code -
@@ -56,8 +57,10 @@ Code -
 ```
 >>> import autogram
 >>> from string import ascii_lowercase as letters
->>> x = autogram.AutoGram(prefix='xiao9 - my cat says this sentence contains ', suffix=' check for yourself.', symbols=letters[:13]+'pqruvxz', seed=1)
->>> x(25000)
+>>> x = autogram.AutoGram(prefix='xiao9 - my cat says this sentence contains ',
+                          suffix=' check for yourself.',
+                          symbols=letters[:13]+'pqruvxz',
+                          seed=1); x(15000)
 ```
 
 Output -
