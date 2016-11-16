@@ -2,20 +2,23 @@
 
 ### What are autograms?
 
-An autogram(https://en.wikipedia.org/wiki/Autogram) is a sentence that describes itself in the sense of providing an inventory of its own characters (Source: Wikipedia).
+An [autogram](https://en.wikipedia.org/wiki/Autogram) is a sentence that
+describes itself in the sense of providing an inventory of its own characters
+(Source: Wikipedia).
 
 ### Purpose of this repository?
 
-To generate some fun little autograms, automatically with a randomized brute-force approach.
+To generate some fun little autograms, automatically with a randomized
+brute-force approach.
 
 ### Requirements
 
-  * pandas - for printing outputs in tabular format
-  * num2words - for converting numbers to their word representation
+  * [pandas](https://github.com/pandas-dev/pandas) - used for printing outputs in tabular format
+  * [num2words](https://github.com/savoirfairelinux/num2words) - used for converting numbers to their word representation
 
 ### Example-1
 
-Simple code example, with limited symbols, with verbose = True -
+Simple code example, with limited symbols, with verbose = True
 ```
 >>> import autogram
 >>> x = autogram.AutoGram(prefix='This sentence has ',
@@ -23,8 +26,7 @@ Simple code example, with limited symbols, with verbose = True -
 >>> x(verbose=True)
 ```
 
-Output -
-
+Output
 ```
 --------------------------------------------------
 Starting autogram generation:
@@ -56,7 +58,7 @@ counts = {u'a': 3, u'c': 2, u'b': 1, u'e': 10, u'd': 2, u'g': 1, u'f': 1}
 
 ### Example-2
 
-Example with more set of symbols used -
+Example with more set of symbols used
 ```
 >>> import autogram
 >>> x = autogram.AutoGram(prefix='This sentence employs ',
@@ -65,7 +67,7 @@ Example with more set of symbols used -
 >>> x()
 ```
 
-Output of the above code -
+Output of the above code
 ```
 ==================================================
 **** autogram generation successful ****
@@ -100,7 +102,7 @@ this sentence employs two a's, one b, two c's, two d's, twenty-five e's, six f's
 
 ### Example-3
 
-Code -
+More complete example with prefix, suffix, custom symbols and random seed
 ```
 >>> import autogram
 >>> from string import ascii_lowercase as letters
@@ -111,7 +113,7 @@ Code -
 >>> x()
 ```
 
-Output -
+Output
 ```
 ==================================================
 **** autogram generation successful ****
